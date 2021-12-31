@@ -1,0 +1,70 @@
+
+
+
+<style>
+    /* Styles for wrapping the search box */
+
+.main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+</style>
+
+
+
+<!doctype html>
+
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <center><img src="/static/images/header.jpg" width="800px" height="200px"></center>    
+    </head>
+
+    <body>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <div class="main">
+  
+        <form action="{% url 'home' %}" method="POST">  
+          {% csrf_token %}
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Enter last 2 digits of Roll no." name="roll">
+              <div class="input-group-append">
+                <button class="btn btn-success" type="submit">Find your pic</button>
+                <a href="team"><button type="button" class="btn btn-success">Admin</button></a>
+              </div>
+              
+            </div>
+            
+          </form>
+          </div>
+          {% if roll%}
+          <center><img src="/static/images/{{roll}}.jpg" width="726px"  height="967.67px"></center>
+          
+          {% else %}
+          <p>Seems you have not submitted the form ...!!</p>
+          {% endif %}
+        
+    </body>
+</html>
+
